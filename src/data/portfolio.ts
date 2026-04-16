@@ -78,9 +78,9 @@ export const projectsData: Project[] = [
     description:
       'Website portofolio untuk profesional',
     technologies: ['React', 'TypeScript', 'Tailwind CSS'],
-    repoUrl: 'coming',
+    repoUrl: 'https://github.com/Rambu464/portfolio-frontend',
     demoUrl: 'coming',
-    previewImageUrl: 'coming',
+    previewImageUrl: '\portofolio.png',
   },
   {
     id: 'project-2',
