@@ -55,7 +55,6 @@ describe('Property 4: Conditional rendering tombol CV di AboutSection', () => {
         (data, cvUrl) => {
           const fullData: AboutData = { ...data, cvUrl };
           const { container, unmount } = render(<AboutSection data={fullData} />);
-          const cvLink = container.querySelector('a[href]');
           // Check specifically for the Download CV link
           const links = Array.from(container.querySelectorAll('a'));
           const cvButton = links.find((a) => a.textContent?.toLowerCase().includes('download cv'));

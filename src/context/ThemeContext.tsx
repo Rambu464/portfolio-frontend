@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import type React from 'react';
 
 const THEME_STORAGE_KEY = 'portfolio-theme';
 type Theme = 'light' | 'dark';
@@ -21,7 +22,7 @@ function getInitialTheme(): Theme {
   return 'light';
 }
 
-function ThemeProvider({ children }: { children: React.ReactNode }): JSX.Element {
+function ThemeProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
   const [isDark, setIsDark] = useState<boolean>(() => getInitialTheme() === 'dark');
 
   useEffect(() => {

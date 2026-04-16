@@ -1,6 +1,6 @@
 import { useTheme } from '../context/ThemeContext';
 
-export default function DarkModeToggle(): JSX.Element {
+export default function DarkModeToggle(): React.JSX.Element {
   const { isDark, toggleTheme } = useTheme();
 
   return (
