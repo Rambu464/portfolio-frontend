@@ -5,3 +5,38 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Aurora animation */
+@keyframes aurora-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.aurora-light {
+  background: linear-gradient(
+    135deg,
+    #E8EDF2 0%,
+    #d4dde8 20%,
+    #c8d8e8 40%,
+    #dce6ef 60%,
+    #e8f0f5 80%,
+    #E8EDF2 100%
+  );
+  background-size: 400% 400%;
+  animation: aurora-shift 12s ease infinite;
+}
+
+.aurora-dark {
+  background: linear-gradient(
+    135deg,
+    #2C3947 0%,
+    #1e2d3d 20%,
+    #243040 40%,
+    #2a3a4a 60%,
+    #1a2a38 80%,
+    #2C3947 100%
+  );
+  background-size: 400% 400%;
+  animation: aurora-shift 14s ease infinite;
+}

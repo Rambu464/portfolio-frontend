@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import useActiveSection from '../hooks/useActiveSection';
 import DarkModeToggle from './DarkModeToggle';
+import { heroData } from '../data/portfolio';
 
 const SECTION_IDS = ['hero', 'about', 'skills', 'projects', 'contact'];
 
 const navLinks = [
-  { label: 'Hero', href: '#hero' },
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
@@ -15,51 +15,59 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  useTheme(); // ensures component re-renders when theme changes
+  const { isDark } = useTheme();
   const activeSection = useActiveSection({ sectionIds: SECTION_IDS });
 
-  const handleLinkClick = () => {
-    setMenuOpen(false);
-  };
+  const handleLinkClick = () => setMenuOpen(false);
 
-  const getLinkClass = (href: string, mobile = false) => {
+  const getLinkClass = (href: string) => {
     const sectionId = href.replace('#', '');
     const isActive = activeSection === sectionId;
-    const base = 'font-medium transition-colors';
-    if (mobile) {
-      return [
-        base,
-        'block py-1',
-        isActive
-          ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded'
-          : 'text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400',
-      ].join(' ');
+    if (isActive) {
+      return isDark
+        ? 'text-sm font-semibold transition-all px-3 py-1.5 rounded-full bg-[#3a4d5e] text-[#C2A56D]'
+        : 'text-sm font-semibold transition-all px-3 py-1.5 rounded-full bg-[#dce6ef] text-[#547A95]';
     }
-    return [
-      base,
-      isActive
-        ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400'
-        : 'text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400',
-    ].join(' ');
+    return isDark
+      ? 'text-sm font-medium transition-all px-3 py-1.5 rounded-full text-[#d1d9e0] hover:text-white hover:bg-[#3a4d5e]'
+      : 'text-sm font-medium transition-all px-3 py-1.5 rounded-full text-[#4a5e6e] hover:text-[#547A95] hover:bg-[#dce6ef]';
+  };
+
+  const getMobileLinkClass = (href: string) => {
+    const sectionId = href.replace('#', '');
+    const isActive = activeSection === sectionId;
+    if (isActive) {
+      return isDark
+        ? 'block text-sm font-semibold px-4 py-2 rounded-xl transition-all bg-[#3a4d5e] text-[#C2A56D]'
+        : 'block text-sm font-semibold px-4 py-2 rounded-xl transition-all bg-[#dce6ef] text-[#547A95]';
+    }
+    return isDark
+      ? 'block text-sm font-medium px-4 py-2 rounded-xl transition-all text-[#d1d9e0] hover:bg-[#3a4d5e]'
+      : 'block text-sm font-medium px-4 py-2 rounded-xl transition-all text-[#4a5e6e] hover:bg-[#dce6ef]';
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 shadow-sm dark:shadow-gray-800">
+    <header className="fixed top-4 left-0 right-0 z-50 flex flex-col items-center px-4">
       <nav
-        className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between"
+        style={{
+          backgroundColor: isDark ? 'rgba(44,57,71,0.85)' : 'rgba(255,255,255,0.88)',
+          borderColor: isDark ? '#3a4d5e' : '#c8d8e8',
+        }}
+        className="w-full max-w-3xl rounded-2xl px-4 py-2.5 flex items-center justify-between shadow-xl backdrop-blur-md border transition-all"
         aria-label="Main navigation"
       >
-        {/* Logo / Name */}
-        <a
-          href="#hero"
-          className="text-lg font-bold text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-          onClick={handleLinkClick}
-        >
-          Rambu Ilalang
+        {/* Left: Name */}
+        <a href="#hero" className="flex items-center group" onClick={handleLinkClick}>
+          <span
+            className="text-sm font-semibold transition-colors"
+            style={{ color: isDark ? '#ffffff' : '#2C3947' }}
+          >
+            {heroData.fullName}
+          </span>
         </a>
 
-        {/* Desktop nav links */}
-        <ul className="hidden md:flex gap-6">
+        {/* Center: Desktop nav links */}
+        <ul className="hidden md:flex items-center gap-1">
           {navLinks.map(({ label, href }) => (
             <li key={href}>
               <a href={href} className={getLinkClass(href)}>
@@ -69,40 +77,23 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Right side: DarkModeToggle + Hamburger button */}
-        <div className="flex items-center gap-2">
+        {/* Right: DarkModeToggle + Hamburger */}
+        <div className="flex items-center gap-1">
           <DarkModeToggle />
-
-          {/* Hamburger button (mobile only) */}
           <button
-            className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="md:hidden p-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#547A95] transition-colors"
+            style={{ color: isDark ? '#e8edf2' : '#2C3947' }}
             aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((prev) => !prev)}
           >
             {menuOpen ? (
-              /* X icon */
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-900 dark:text-gray-100"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              /* Hamburger icon */
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-900 dark:text-gray-100"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
@@ -110,19 +101,19 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile dropdown */}
       {menuOpen && (
         <ul
           id="mobile-menu"
-          className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-700 px-4 py-3 flex flex-col gap-3"
+          style={{
+            backgroundColor: isDark ? 'rgba(44,57,71,0.95)' : 'rgba(255,255,255,0.95)',
+            borderColor: isDark ? '#3a4d5e' : '#c8d8e8',
+          }}
+          className="md:hidden mt-2 w-full max-w-3xl rounded-2xl px-3 py-3 flex flex-col gap-1 shadow-xl backdrop-blur-md border"
         >
           {navLinks.map(({ label, href }) => (
             <li key={href}>
-              <a
-                href={href}
-                className={getLinkClass(href, true)}
-                onClick={handleLinkClick}
-              >
+              <a href={href} className={getMobileLinkClass(href)} onClick={handleLinkClick}>
                 {label}
               </a>
             </li>

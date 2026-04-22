@@ -7,9 +7,9 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900 px-4">
+    <section id="projects" className="py-20 bg-[#E8EDF2] dark:bg-[#2C3947] px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#2C3947] dark:text-white mb-12 text-center">
           Projects
         </h2>
 

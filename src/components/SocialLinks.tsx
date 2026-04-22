@@ -1,6 +1,5 @@
 import type { SocialLink } from '../data/types';
 
-// Simple inline SVG icons for common platforms
 function SocialIcon({ name }: { name: string }) {
   switch (name.toLowerCase()) {
     case 'github':
@@ -45,7 +44,7 @@ export default function SocialLinks({ links }: SocialLinksProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Kunjungi profil ${link.platform}`}
-            className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-400 hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-white transition-colors"
+            className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors border-[#b0c8d8] dark:border-[#3a4d5e] text-[#2C3947] dark:text-[#d1d9e0] hover:border-[#547A95] hover:text-[#547A95] dark:hover:text-[#C2A56D]"
           >
             <SocialIcon name={link.iconName} />
             {link.platform}

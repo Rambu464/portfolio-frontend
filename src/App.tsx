@@ -17,9 +17,7 @@ import {
 function App() {
   return (
     <ThemeProvider>
-      <header>
-        <Navbar />
-      </header>
+      <Navbar />
 
       <main>
         <HeroSection data={heroData} />

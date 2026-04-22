@@ -8,7 +8,7 @@ import type {
 
 export const heroData: HeroData = {
   fullName: 'Rambu Ilalang',
-  tagline: 'AI Engineer with data-driven mindset, passionate about technology and AI transformation.',
+  tagline: 'Being a developer is my hobby as well as passion. I\'m certainly able to build website and AI model such as ML, DL, And LLM.',
   ctaLabel: 'Look at my projects',
   ctaTarget: 'projects',
   profileImageUrl: '/profile.jpeg',

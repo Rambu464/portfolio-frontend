@@ -7,7 +7,17 @@ export default function DarkModeToggle(): React.JSX.Element {
     <button
       onClick={toggleTheme}
       aria-label={isDark ? 'Aktifkan light mode' : 'Aktifkan dark mode'}
-      className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+      className="p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#547A95] transition-colors"
+      style={{
+        color: isDark ? '#d1d9e0' : '#4a5e6e',
+        backgroundColor: 'transparent',
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLButtonElement).style.backgroundColor = isDark ? '#3a4d5e' : '#dce6ef';
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent';
+      }}
     >
       {isDark ? (
         // Sun icon

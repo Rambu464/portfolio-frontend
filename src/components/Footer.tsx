@@ -2,7 +2,7 @@ const currentYear = new Date().getFullYear();
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-400 py-6 mt-auto">
+    <footer className="py-6 mt-auto" style={{ backgroundColor: '#2C3947', color: '#a0b0be' }}>
       <div className="max-w-6xl mx-auto px-4 text-center text-sm">
         <p>© {currentYear} Rambu Ilalang. All rights reserved.</p>
       </div>
