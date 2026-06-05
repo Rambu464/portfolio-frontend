@@ -79,7 +79,7 @@ export const projectsData: Project[] = [
     description: "Website portofolio untuk profesional",
     technologies: ["React", "TypeScript", "Tailwind CSS"],
     repoUrl: "https://github.com/Rambu464/portfolio-frontend",
-    demoUrl: "coming",
+    demoUrl: "https://portfolio-frontend-nine-rouge-93.vercel.app/",
     previewImageUrl: "\portofolio.png",
   },
   {
@@ -90,6 +90,15 @@ export const projectsData: Project[] = [
     repoUrl: "https://github.com/Rambu464/gemini-chatbot-api",
     demoUrl: "https://gemini-chatbot-api-five.vercel.app/",
     previewImageUrl: "\skill_advisor.png",
+  },
+    {
+    id: "project-3",
+    title: "Skill Advisor",
+    description: "Chatbot Berbasiskan RAG dan Prompt Cahce Using SLM qwen 2.5",
+    technologies: ["langchain", "next.js", "fastapi"],
+    repoUrl: "https://github.com/Rambu464/chatbot",
+    demoUrl: "Coming",
+    previewImageUrl: "slm_qwen_rag.png",
   },
 ];
 
