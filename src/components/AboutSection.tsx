@@ -5,7 +5,7 @@ interface AboutSectionProps {
 }
 
 export default function AboutSection({ data }: AboutSectionProps) {
-  const { description, education, experience, cvUrl } = data;
+  const { description, education, experience } = data;
 
   return (
     <section id="about" className="py-20 px-4 bg-[#E8EDF2] dark:bg-[#2C3947]">
@@ -14,57 +14,84 @@ export default function AboutSection({ data }: AboutSectionProps) {
           About Me
         </h2>
 
-        <p className="text-[#4a5e6e] dark:text-[#d1d9e0] text-lg leading-relaxed mb-12 text-center md:text-left">
+        <p className="text-[#4a5e6e] dark:text-[#d1d9e0] text-lg leading-relaxed mb-14 text-center">
           {description}
         </p>
 
-        <div className="grid md:grid-cols-2 gap-10">
-          {/* Education */}
-          <div>
-            <h3 className="text-xl font-semibold text-[#2C3947] dark:text-white mb-4 border-b border-[#547A95] pb-2">
-              Education
+        <div className="flex flex-col gap-16">
+          {/* Relevant Experience (Above) */}
+          <div className="flex flex-col items-center">
+            <h3 className="text-2xl font-semibold text-[#2C3947] dark:text-white mb-8 border-b-2 border-[#547A95] dark:border-white pb-2 text-center">
+              Relevant Experience
             </h3>
-            <ul className="space-y-4">
-              {education.map((item, index) => (
-                <li key={index} className="flex flex-col">
-                  <span className="font-medium text-[#2C3947] dark:text-white">{item.institution}</span>
-                  <span className="text-[#4a5e6e] dark:text-[#d1d9e0] text-sm">{item.degree}</span>
-                  <span className="text-[#547A95] dark:text-[#C2A56D] text-sm">{item.year}</span>
-                </li>
+
+            <div className="w-full max-w-2xl flex flex-col items-center">
+              {experience.map((item, index) => (
+                <div key={index} className="w-full flex flex-col items-center">
+                  {/* Experience Card */}
+                  <div className="w-full bg-white dark:bg-[#1e2d3d] rounded-xl p-6 shadow-sm border border-[#b0c8d8] dark:border-[#3a4d5e] text-center">
+                    <span className="block text-lg font-semibold text-[#2C3947] dark:text-white">
+                      {item.company}
+                    </span>
+                    <span className="block text-[#4a5e6e] dark:text-[#d1d9e0] text-sm font-medium mt-0.5">
+                      {item.role}
+                    </span>
+                    <span className="inline-block text-[#547A95] dark:text-white text-xs font-semibold mt-1 px-3 py-0.5 rounded-full bg-[#E8EDF2] dark:bg-[#2C3947]">
+                      {item.period}
+                    </span>
+                    <p className="text-[#4a5e6e] dark:text-[#d1d9e0] text-sm mt-3 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Center roadmap connector between connected items */}
+                  {index < experience.length - 1 && (
+                    <div aria-hidden="true" className="flex flex-col items-center">
+                      <div className="w-0.5 h-5 bg-[#547A95] dark:bg-white" />
+                      <div className="w-3 h-3 rounded-full bg-[#547A95] dark:bg-white ring-4 ring-[#dce6ef] dark:ring-[#3a4d5e]" />
+                      <div className="w-0.5 h-5 bg-[#547A95] dark:bg-white" />
+                    </div>
+                  )}
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* Experience */}
-          <div>
-            <h3 className="text-xl font-semibold text-[#2C3947] dark:text-white mb-4 border-b border-[#547A95] pb-2">
-              Experience
+          {/* Education & Certifications (Below) */}
+          <div className="flex flex-col items-center">
+            <h3 className="text-2xl font-semibold text-[#2C3947] dark:text-white mb-8 border-b-2 border-[#547A95] dark:border-white pb-2 text-center">
+              Education & Certifications
             </h3>
-            <ul className="space-y-6">
-              {experience.map((item, index) => (
-                <li key={index} className="flex flex-col">
-                  <span className="font-medium text-[#2C3947] dark:text-white">{item.company}</span>
-                  <span className="text-[#4a5e6e] dark:text-[#d1d9e0] text-sm">{item.role}</span>
-                  <span className="text-[#547A95] dark:text-[#C2A56D] text-sm">{item.period}</span>
-                  <p className="text-[#4a5e6e] dark:text-[#d1d9e0] text-sm mt-1">{item.description}</p>
-                </li>
+
+            <div className="w-full max-w-2xl flex flex-col items-center">
+              {education.map((item, index) => (
+                <div key={index} className="w-full flex flex-col items-center">
+                  {/* Education Card */}
+                  <div className="w-full bg-white dark:bg-[#1e2d3d] rounded-xl p-6 shadow-sm border border-[#b0c8d8] dark:border-[#3a4d5e] text-center">
+                    <span className="block text-lg font-semibold text-[#2C3947] dark:text-white">
+                      {item.institution}
+                    </span>
+                    <span className="block text-[#4a5e6e] dark:text-[#d1d9e0] text-sm mt-1">
+                      {item.degree}
+                    </span>
+                    <span className="inline-block text-[#547A95] dark:text-white text-xs font-semibold mt-2 px-3 py-0.5 rounded-full bg-[#E8EDF2] dark:bg-[#2C3947]">
+                      {item.year}
+                    </span>
+                  </div>
+
+                  {/* Center roadmap connector between connected items */}
+                  {index < education.length - 1 && (
+                    <div aria-hidden="true" className="flex flex-col items-center">
+                      <div className="w-0.5 h-5 bg-[#547A95] dark:bg-white" />
+                      <div className="w-3 h-3 rounded-full bg-[#547A95] dark:bg-white ring-4 ring-[#dce6ef] dark:ring-[#3a4d5e]" />
+                      <div className="w-0.5 h-5 bg-[#547A95] dark:bg-white" />
+                    </div>
+                  )}
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
-
-        {cvUrl && (
-          <div className="mt-10 text-center md:text-left">
-            <a
-              href={cvUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-[#547A95] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#3d6278] focus:outline-none focus:ring-2 focus:ring-[#547A95] focus:ring-offset-2 transition-colors"
-            >
-              Download CV
-            </a>
-          </div>
-        )}
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ export default function DarkModeToggle(): React.JSX.Element {
   return (
     <button
       onClick={toggleTheme}
-      aria-label={isDark ? 'Aktifkan light mode' : 'Aktifkan dark mode'}
+      aria-label={isDark ? 'Enable light mode' : 'Enable dark mode'}
       className="p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#547A95] transition-colors"
       style={{
         color: isDark ? '#d1d9e0' : '#4a5e6e',

@@ -9,17 +9,17 @@ export function validateContactForm(data: ContactFormData): ValidationResult {
   const errors: Partial<Record<keyof ContactFormData, string>> = {};
 
   if (!data.name.trim()) {
-    errors.name = 'Nama wajib diisi.';
+    errors.name = 'Name is required.';
   }
 
   if (!data.email.trim()) {
-    errors.email = 'Email wajib diisi.';
+    errors.email = 'Email is required.';
   } else if (!isValidEmail(data.email)) {
-    errors.email = 'Format email tidak valid.';
+    errors.email = 'Email format is invalid.';
   }
 
   if (!data.message.trim()) {
-    errors.message = 'Pesan wajib diisi.';
+    errors.message = 'Message is required.';
   }
 
   return {

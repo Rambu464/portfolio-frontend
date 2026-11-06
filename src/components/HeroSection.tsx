@@ -6,7 +6,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ data }: HeroSectionProps) {
-  const { fullName, tagline, ctaTarget, profileImageUrl } = data;
+  const { fullName, tagline, ctaLabel, ctaTarget, profileImageUrl } = data;
   const { isDark } = useTheme();
 
   return (
@@ -16,19 +16,8 @@ export default function HeroSection({ data }: HeroSectionProps) {
     >
       <div className="flex flex-col items-center gap-8 text-center max-w-xl w-full">
 
-        {/* Profile photo with two side badges */}
+        {/* Profile photo */}
         <div className="relative flex items-center justify-center w-full">
-          {/* Left badge: AI Engineer */}
-          <span
-            className="absolute left-0 px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap border"
-            style={isDark
-              ? { backgroundColor: '#2C3947', color: '#C2A56D', borderColor: '#8a7040' }
-              : { backgroundColor: '#ffffff', color: '#547A95', borderColor: '#b0c8d8' }
-            }
-          >
-            AI Engineer
-          </span>
-
           {/* Profile circle */}
           <div className="relative w-44 h-44">
             <div
@@ -42,7 +31,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
               {profileImageUrl ? (
                 <img
                   src={profileImageUrl}
-                  alt={`Foto profil ${fullName}`}
+                  alt={`Profile photo of ${fullName}`}
                   className="w-full h-full object-cover"
                 />
               ) : (
@@ -58,17 +47,6 @@ export default function HeroSection({ data }: HeroSectionProps) {
               )}
             </div>
           </div>
-
-          {/* Right badge: MLOps */}
-          <span
-            className="absolute right-0 px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap border"
-            style={isDark
-              ? { backgroundColor: '#2C3947', color: '#C2A56D', borderColor: '#8a7040' }
-              : { backgroundColor: '#ffffff', color: '#547A95', borderColor: '#b0c8d8' }
-            }
-          >
-            MLOps
-          </span>
         </div>
 
         {/* Text content */}
@@ -109,7 +87,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
             (e.currentTarget as HTMLAnchorElement).style.backgroundColor = isDark ? '#547A95' : 'transparent';
           }}
         >
-          Contact Me
+          {ctaLabel || 'Contact Me'}
         </a>
       </div>
     </section>

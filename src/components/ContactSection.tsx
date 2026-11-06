@@ -11,19 +11,19 @@ export default function ContactSection({ data }: ContactSectionProps) {
     <section id="contact" aria-labelledby="contact-heading" className="py-16 px-4 bg-white dark:bg-[#1e2d3d]">
       <div className="max-w-4xl mx-auto">
         <h2 id="contact-heading" className="text-3xl font-bold text-[#2C3947] dark:text-white mb-2 text-center">
-          Hubungi Saya
+          Contact Me
         </h2>
         <p className="text-center text-[#4a5e6e] dark:text-[#d1d9e0] mb-10">
-          Ada pertanyaan atau tawaran kerja sama? Kirim pesan atau temukan saya di media sosial.
+          Have a question or a collaboration offer? Send a message or find me on social media.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
-            <h3 className="text-lg font-semibold text-[#2C3947] dark:text-white mb-4">Kirim Pesan</h3>
+            <h3 className="text-lg font-semibold text-[#2C3947] dark:text-white mb-4">Send a Message</h3>
             <ContactForm />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-[#2C3947] dark:text-white mb-4">Temukan Saya Di</h3>
+            <h3 className="text-lg font-semibold text-[#2C3947] dark:text-white mb-4">Find Me On</h3>
             <SocialLinks links={data.socialLinks} />
           </div>
         </div>

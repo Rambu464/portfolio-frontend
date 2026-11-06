@@ -1,3 +1,4 @@
+import ChatbotWidget from './components/ChatbotWidget';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
@@ -30,6 +31,8 @@ function App() {
       <footer>
         <Footer />
       </footer>
+
+      <ChatbotWidget />
     </ThemeProvider>
   );
 }
